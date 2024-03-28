@@ -70,11 +70,11 @@ const Pug = {
     console.log(`Good evening, my name is ${this.name}!`);
   },
   sleep() {
-    Animal.sleep();
     console.log("I sleep and snore");
   },
   __proto__: Dog,
 };
+Pug.sleep();
 Pug.showVoice();
 Pug.sayHi();
 Pug.sleep();
@@ -89,7 +89,8 @@ const user = {
   },
   set userAge(value) {
     if (value > 0) {
-      console.log(`User age is ${(this._age = value)} years old!`);
+      this._age = value;
+      console.log(`User age is ${this._age} years old!`);
     } else {
       console.log("Your age less than 0");
     }
@@ -99,7 +100,8 @@ const user = {
   },
   set userName(value) {
     if (value.length > 2) {
-      console.log(`User name is ${(this._name = value)}!`);
+      this._name = value;
+      console.log(`User name is ${this._name}!`);
     } else {
       console.log("Your name is too short!");
     }
@@ -118,11 +120,12 @@ function Triangle(a, b, c) {
   this.a = a;
   this.b = b;
   this.c = c;
-  this.getSquare = function (value) {
-    const p = (this.a + this.b + this.c) / value;
-    return Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
-  };
 }
+
+Triangle.prototype.getSquare = function (value) {
+  const p = (this.a + this.b + this.c) / value;
+  return Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
+};
 
 const triangle1 = new Triangle(5, 4, 3);
 const triangle2 = new Triangle(5, 5, 2);
